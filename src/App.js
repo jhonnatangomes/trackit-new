@@ -4,11 +4,19 @@ import Login from './components/login/Login';
 import Today from './components/today/Today';
 import Habits from './components/habits/Habits';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
-import { useState } from 'react';
+import TopBar from './components/topBar/TopBar';
+import { useEffect, useState } from 'react';
 import UserContext from './contexts/UserContext';
 
 function App() {
     const [user, setUser] = useState(null);
+    const userLocalStorage = localStorage.getItem('trackit-user');
+
+    useEffect(() => {
+        if (userLocalStorage) {
+            setUser(JSON.parse(userLocalStorage));
+        }
+    }, []);
 
     return (
         <BrowserRouter>
@@ -20,7 +28,8 @@ function App() {
                     <Route
                         path="/hoje"
                         element={
-                            <ProtectedRoute isAuthenticated={user}>
+                            <ProtectedRoute isAuthenticated={userLocalStorage}>
+                                <TopBar />
                                 <Today />
                             </ProtectedRoute>
                         }
@@ -28,7 +37,8 @@ function App() {
                     <Route
                         path="/habitos"
                         element={
-                            <ProtectedRoute isAuthenticated={user}>
+                            <ProtectedRoute isAuthenticated={userLocalStorage}>
+                                <TopBar />
                                 <Habits />
                             </ProtectedRoute>
                         }

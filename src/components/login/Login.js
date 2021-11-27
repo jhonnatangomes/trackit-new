@@ -5,9 +5,10 @@ import Button from '../../shared/button';
 import colors from '../../styles/colors';
 import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { signUp, signIn } from '../../services/api';
 import { Ellipsis } from 'react-spinners-css';
+import UserContext from '../../contexts/UserContext';
 
 export default function Login() {
     const path = useLocation().pathname;
@@ -19,6 +20,7 @@ export default function Login() {
         image: '',
     });
     const [loading, setLoading] = useState(false);
+    const { setUser } = useContext(UserContext);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -47,8 +49,13 @@ export default function Login() {
                 password: inputs.password,
             });
             promise
-                .then(() => {
+                .then((res) => {
                     setLoading(false);
+                    setUser(res.data);
+                    localStorage.setItem(
+                        'trackit-user',
+                        JSON.stringify(res.data)
+                    );
                     navigate('/hoje');
                 })
                 .catch((err) => {
