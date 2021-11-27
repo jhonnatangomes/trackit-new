@@ -6,6 +6,7 @@ import { getHabits } from '../../services/api';
 import UserContext from '../../contexts/UserContext';
 import { useNavigate } from 'react-router';
 import CreateHabit from './CreateHabit';
+import Habit from './Habit';
 
 export default function Habits() {
     const [habits, setHabits] = useState(null);
@@ -45,7 +46,11 @@ export default function Habits() {
             )}
             {habits ? (
                 habits.length ? (
-                    ''
+                    <HabitContainer>
+                        {habits.map((habit) => (
+                            <Habit key={habit.id} habit={habit} />
+                        ))}
+                    </HabitContainer>
                 ) : (
                     <NoHabitsYet>
                         Você não tem nenhum hábito cadastrado ainda. Adicione um
@@ -90,4 +95,14 @@ const NoHabitsYet = styled.span`
     line-height: 22.47px;
     color: #666666;
     margin-top: 28px;
+`;
+
+const HabitContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+    div:not(:last-child) {
+        margin-bottom: 10px;
+    }
 `;

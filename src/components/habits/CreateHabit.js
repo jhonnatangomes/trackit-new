@@ -7,6 +7,7 @@ import { createHabit } from '../../services/api';
 import { useContext, useState } from 'react';
 import UserContext from '../../contexts/UserContext';
 import { Ellipsis } from 'react-spinners-css';
+import Days from '../../shared/days';
 
 export default function CreateHabit({ habitInfo, setHabitInfo, setShowBox }) {
     const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
@@ -91,14 +92,6 @@ const Container = styled.div`
     padding: 18px 18px 15px 18px;
     border-radius: 5px;
     margin-top: 20px;
-`;
-
-const Days = styled.div`
-    margin-top: 8px;
-    display: flex;
-    div:not(:last-child) {
-        margin-right: 4px;
-    }
 `;
 
 const ButtonsContainer = styled.div`
