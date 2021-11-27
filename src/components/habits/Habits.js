@@ -5,9 +5,11 @@ import { useContext, useEffect, useState } from 'react';
 import { getHabits } from '../../services/api';
 import UserContext from '../../contexts/UserContext';
 import { useNavigate } from 'react-router';
+import CreateHabit from './CreateHabit';
 
 export default function Habits() {
     const [habits, setHabits] = useState(null);
+    const [showBox, setShowBox] = useState(false);
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -24,12 +26,14 @@ export default function Habits() {
                 });
         }
     }, [user]);
+
     return (
         <PageContainer>
             <MyHabits>
                 <span>Meus hábitos</span>
-                <div>+</div>
+                <div onClick={() => setShowBox(!showBox)}>+</div>
             </MyHabits>
+            {showBox ? <CreateHabit /> : ''}
             {habits ? (
                 habits.length ? (
                     ''
