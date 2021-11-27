@@ -5,6 +5,7 @@ import Today from './components/today/Today';
 import Habits from './components/habits/Habits';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 import TopBar from './components/topBar/TopBar';
+import Menu from './menu/Menu';
 import { useEffect, useState } from 'react';
 import UserContext from './contexts/UserContext';
 
@@ -40,6 +41,7 @@ function App() {
                             <ProtectedRoute isAuthenticated={userLocalStorage}>
                                 <TopBar />
                                 <Habits />
+                                <Menu />
                             </ProtectedRoute>
                         }
                     />
