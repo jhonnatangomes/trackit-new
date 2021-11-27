@@ -50,7 +50,12 @@ export default function Habits() {
                 habits.length ? (
                     <HabitContainer>
                         {habits.map((habit) => (
-                            <Habit key={habit.id} habit={habit} />
+                            <Habit
+                                key={habit.id}
+                                habit={habit}
+                                habits={habits}
+                                setHabits={setHabits}
+                            />
                         ))}
                     </HabitContainer>
                 ) : (

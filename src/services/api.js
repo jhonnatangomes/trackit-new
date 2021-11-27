@@ -25,4 +25,8 @@ function createHabit(body, token) {
     return axios.post(`${API_URL}/habits`, body, headersConfig(token));
 }
 
-export { signUp, signIn, getHabits, createHabit };
+function deleteHabit(habitId, token) {
+    return axios.delete(`${API_URL}/habits/${habitId}`, headersConfig(token));
+}
+
+export { signUp, signIn, getHabits, createHabit, deleteHabit };
