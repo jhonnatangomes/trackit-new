@@ -1,14 +1,47 @@
 import styled from 'styled-components';
 import PageContainer from '../../shared/container';
 import colors from '../../styles/colors';
+import { useContext, useEffect, useState } from 'react';
+import { getHabits } from '../../services/api';
+import UserContext from '../../contexts/UserContext';
+import { useNavigate } from 'react-router';
 
 export default function Habits() {
+    const [habits, setHabits] = useState(null);
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            const promise = getHabits(user.token);
+            promise
+                .then((res) => setHabits(res.data))
+                .catch((err) => {
+                    if (err.response.status === 401) {
+                        alert('Você não está mais logado!');
+                        navigate('/');
+                    }
+                });
+        }
+    }, [user]);
     return (
         <PageContainer>
             <MyHabits>
                 <span>Meus hábitos</span>
                 <div>+</div>
             </MyHabits>
+            {habits ? (
+                habits.length ? (
+                    ''
+                ) : (
+                    <NoHabitsYet>
+                        Você não tem nenhum hábito cadastrado ainda. Adicione um
+                        hábito para começar a trackear!
+                    </NoHabitsYet>
+                )
+            ) : (
+                ''
+            )}
         </PageContainer>
     );
 }
@@ -36,4 +69,12 @@ const MyHabits = styled.div`
         line-height: 33.72px;
         color: white;
     }
+`;
+
+const NoHabitsYet = styled.span`
+    display: inline-block;
+    font-size: 17.98px;
+    line-height: 22.47px;
+    color: #666666;
+    margin-top: 28px;
 `;
