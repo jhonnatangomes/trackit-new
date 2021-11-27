@@ -8,7 +8,7 @@ export default function TopBar() {
     return (
         <TopBarContainer>
             <Logo>TrackIt</Logo>
-            <ProfilePic src={user.image} alt="Foto de perfil" />
+            <ProfilePic src={user && user.image} alt="Foto de perfil" />
         </TopBarContainer>
     );
 }
