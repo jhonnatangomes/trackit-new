@@ -14,6 +14,7 @@ const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
 `;
 
 export default Button;

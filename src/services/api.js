@@ -21,4 +21,8 @@ function getHabits(token) {
     return axios.get(`${API_URL}/habits`, headersConfig(token));
 }
 
-export { signUp, signIn, getHabits };
+function createHabit(body, token) {
+    return axios.post(`${API_URL}/habits`, body, headersConfig(token));
+}
+
+export { signUp, signIn, getHabits, createHabit };

@@ -10,6 +10,7 @@ import CreateHabit from './CreateHabit';
 export default function Habits() {
     const [habits, setHabits] = useState(null);
     const [showBox, setShowBox] = useState(false);
+    const [habitInfo, setHabitInfo] = useState({ name: '', days: [] });
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -33,7 +34,15 @@ export default function Habits() {
                 <span>Meus hábitos</span>
                 <div onClick={() => setShowBox(!showBox)}>+</div>
             </MyHabits>
-            {showBox ? <CreateHabit /> : ''}
+            {showBox ? (
+                <CreateHabit
+                    habitInfo={habitInfo}
+                    setHabitInfo={setHabitInfo}
+                    setShowBox={setShowBox}
+                />
+            ) : (
+                ''
+            )}
             {habits ? (
                 habits.length ? (
                     ''
