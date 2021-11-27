@@ -40,6 +40,8 @@ export default function Habits() {
                     habitInfo={habitInfo}
                     setHabitInfo={setHabitInfo}
                     setShowBox={setShowBox}
+                    setHabits={setHabits}
+                    habits={habits}
                 />
             ) : (
                 ''

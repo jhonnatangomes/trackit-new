@@ -9,7 +9,13 @@ import UserContext from '../../contexts/UserContext';
 import { Ellipsis } from 'react-spinners-css';
 import Days from '../../shared/days';
 
-export default function CreateHabit({ habitInfo, setHabitInfo, setShowBox }) {
+export default function CreateHabit({
+    habitInfo,
+    setHabitInfo,
+    setShowBox,
+    setHabits,
+    habits,
+}) {
     const days = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
     const [loading, setLoading] = useState(false);
     const { user } = useContext(UserContext);
@@ -20,8 +26,10 @@ export default function CreateHabit({ habitInfo, setHabitInfo, setShowBox }) {
             const promise = createHabit(habitInfo, user.token);
             promise
                 .then((res) => {
-                    console.log(res.data);
                     setLoading(false);
+                    setShowBox(false);
+                    setHabits([...habits, res.data]);
+                    setHabitInfo({ name: '', days: [] });
                 })
                 .catch((err) => {
                     console.error(err.response);
@@ -43,6 +51,7 @@ export default function CreateHabit({ habitInfo, setHabitInfo, setShowBox }) {
                 onChange={(e) =>
                     setHabitInfo({ ...habitInfo, name: e.target.value })
                 }
+                value={habitInfo.name}
                 disabled={loading}
             />
             <Days>
