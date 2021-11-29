@@ -6,11 +6,14 @@ import Habits from './components/habits/Habits';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 import TopBar from './components/topBar/TopBar';
 import Menu from './menu/Menu';
-import { useEffect, useState } from 'react';
+import History from './components/history/History';
+import React, { useEffect, useState } from 'react';
 import UserContext from './contexts/UserContext';
+import ProgressContext from './contexts/ProgressContext';
 
 function App() {
     const [user, setUser] = useState(null);
+    const [progress, setProgress] = useState(0);
     const userLocalStorage = localStorage.getItem('trackit-user');
 
     useEffect(() => {
@@ -22,30 +25,49 @@ function App() {
     return (
         <BrowserRouter>
             <UserContext.Provider value={{ user, setUser }}>
-                <GlobalStyle />
-                <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/cadastro" element={<Login />} />
-                    <Route
-                        path="/hoje"
-                        element={
-                            <ProtectedRoute isAuthenticated={userLocalStorage}>
-                                <TopBar />
-                                <Today />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path="/habitos"
-                        element={
-                            <ProtectedRoute isAuthenticated={userLocalStorage}>
-                                <TopBar />
-                                <Habits />
-                                <Menu />
-                            </ProtectedRoute>
-                        }
-                    />
-                </Routes>
+                <ProgressContext.Provider value={{ progress, setProgress }}>
+                    <GlobalStyle />
+                    <Routes>
+                        <Route path="/" element={<Login />} />
+                        <Route path="/cadastro" element={<Login />} />
+                        <Route
+                            path="/hoje"
+                            element={
+                                <ProtectedRoute
+                                    isAuthenticated={userLocalStorage}
+                                >
+                                    <TopBar />
+                                    <Today />
+                                    <Menu />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/habitos"
+                            element={
+                                <ProtectedRoute
+                                    isAuthenticated={userLocalStorage}
+                                >
+                                    <TopBar />
+                                    <Habits />
+                                    <Menu />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/historico"
+                            element={
+                                <ProtectedRoute
+                                    isAuthenticated={userLocalStorage}
+                                >
+                                    <TopBar />
+                                    <History />
+                                    <Menu />
+                                </ProtectedRoute>
+                            }
+                        />
+                    </Routes>
+                </ProgressContext.Provider>
             </UserContext.Provider>
         </BrowserRouter>
     );

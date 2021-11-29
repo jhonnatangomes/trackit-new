@@ -1,21 +1,33 @@
 import styled from 'styled-components';
 import colors from '../styles/colors';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import ProgressContext from '../contexts/ProgressContext';
 
 export default function Menu() {
+    const { progress } = useContext(ProgressContext);
     return (
         <Container>
-            <StyledLink>Hábitos</StyledLink>
+            <Link to="/habitos">
+                <StyledLink>Hábitos</StyledLink>
+            </Link>
             <Today>
-                <CircularProgressbar
-                    value={100}
-                    styles={buildStyles({
-                        trailColor: 'white',
-                    })}
-                />
-                <span>Hoje</span>
+                <Link to="/hoje">
+                    <CircularProgressbar
+                        value={progress}
+                        styles={buildStyles({
+                            pathColor: 'white',
+                            trailColor: colors.blue,
+                            pathTransitionDuration: 0.5,
+                        })}
+                    />
+                    <span>Hoje</span>
+                </Link>
             </Today>
-            <StyledLink>Histórico</StyledLink>
+            <Link to="/historico">
+                <StyledLink>Histórico</StyledLink>
+            </Link>
         </Container>
     );
 }
@@ -30,6 +42,7 @@ const Container = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    z-index: 5;
 
     span {
         font-size: 17.98px;

@@ -29,4 +29,33 @@ function deleteHabit(habitId, token) {
     return axios.delete(`${API_URL}/habits/${habitId}`, headersConfig(token));
 }
 
-export { signUp, signIn, getHabits, createHabit, deleteHabit };
+function getHabitToday(token) {
+    return axios.get(`${API_URL}/habits/today`, headersConfig(token));
+}
+
+function checkHabit(habitId, token) {
+    return axios.post(
+        `${API_URL}/habits/${habitId}/check`,
+        {},
+        headersConfig(token)
+    );
+}
+
+function uncheckHabit(habitId, token) {
+    return axios.post(
+        `${API_URL}/habits/${habitId}/uncheck`,
+        {},
+        headersConfig(token)
+    );
+}
+
+export {
+    signUp,
+    signIn,
+    getHabits,
+    createHabit,
+    deleteHabit,
+    getHabitToday,
+    checkHabit,
+    uncheckHabit,
+};

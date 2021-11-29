@@ -109,7 +109,7 @@ const HabitContainer = styled.div`
     flex-direction: column;
     margin-top: 20px;
 
-    div:not(:last-child) {
+    & > div {
         margin-bottom: 10px;
     }
 `;

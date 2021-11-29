@@ -68,6 +68,10 @@ table {
     box-sizing: border-box;
 }
 
+a {
+	color: inherit;
+}
+
 `;
 
 export default GlobalStyle;
