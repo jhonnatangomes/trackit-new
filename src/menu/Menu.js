@@ -1,21 +1,28 @@
 import styled from 'styled-components';
 import colors from '../styles/colors';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import { Link } from 'react-router-dom';
 
 export default function Menu() {
     return (
         <Container>
-            <StyledLink>Hábitos</StyledLink>
+            <Link to="/habitos">
+                <StyledLink>Hábitos</StyledLink>
+            </Link>
             <Today>
-                <CircularProgressbar
-                    value={100}
-                    styles={buildStyles({
-                        trailColor: 'white',
-                    })}
-                />
-                <span>Hoje</span>
+                <Link to="/hoje">
+                    <CircularProgressbar
+                        value={100}
+                        styles={buildStyles({
+                            trailColor: 'white',
+                        })}
+                    />
+                    <span>Hoje</span>
+                </Link>
             </Today>
-            <StyledLink>Histórico</StyledLink>
+            <Link to="/historico">
+                <StyledLink>Histórico</StyledLink>
+            </Link>
         </Container>
     );
 }

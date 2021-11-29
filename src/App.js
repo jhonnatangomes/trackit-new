@@ -6,6 +6,7 @@ import Habits from './components/habits/Habits';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 import TopBar from './components/topBar/TopBar';
 import Menu from './menu/Menu';
+import History from './components/history/History';
 import { useEffect, useState } from 'react';
 import UserContext from './contexts/UserContext';
 
@@ -32,6 +33,7 @@ function App() {
                             <ProtectedRoute isAuthenticated={userLocalStorage}>
                                 <TopBar />
                                 <Today />
+                                <Menu />
                             </ProtectedRoute>
                         }
                     />
@@ -41,6 +43,16 @@ function App() {
                             <ProtectedRoute isAuthenticated={userLocalStorage}>
                                 <TopBar />
                                 <Habits />
+                                <Menu />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/historico"
+                        element={
+                            <ProtectedRoute isAuthenticated={userLocalStorage}>
+                                <TopBar />
+                                <History />
                                 <Menu />
                             </ProtectedRoute>
                         }
