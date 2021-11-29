@@ -18,6 +18,8 @@ export default function Menu() {
                         value={progress}
                         styles={buildStyles({
                             pathColor: 'white',
+                            trailColor: colors.blue,
+                            pathTransitionDuration: 0.5,
                         })}
                     />
                     <span>Hoje</span>
@@ -40,6 +42,7 @@ const Container = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    z-index: 5;
 
     span {
         font-size: 17.98px;
