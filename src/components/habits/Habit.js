@@ -54,7 +54,6 @@ export default function Habit({ habit, habits, setHabits }) {
 
 const Container = styled.div`
     width: 100%;
-    height: 91px;
     padding: 13px 15px;
     background-color: white;
     border-radius: 5px;
@@ -62,9 +61,14 @@ const Container = styled.div`
 `;
 
 const HabitTitle = styled.span`
+    display: inline-block;
     font-size: 20px;
     line-height: 25px;
     color: #666666;
+    width: 90%;
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
 `;
 
 const DeleteIcon = styled.img`

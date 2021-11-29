@@ -101,12 +101,16 @@ export default function Habit({ habit, habits, setHabits }) {
 
 const Container = styled.div`
     width: 100%;
-    height: 94px;
     border-radius: 5px;
     background-color: white;
     padding: 13px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    & > div:first-child {
+        width: 70%;
+    }
 `;
 
 const HabitTitle = styled.span`

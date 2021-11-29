@@ -72,7 +72,7 @@ const HabitPercentage = styled.p`
 const Habits = styled.div`
     margin-top: 28px;
 
-    div {
+    & > div {
         margin-bottom: 10px;
     }
 `;
