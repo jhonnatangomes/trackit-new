@@ -29,4 +29,8 @@ function deleteHabit(habitId, token) {
     return axios.delete(`${API_URL}/habits/${habitId}`, headersConfig(token));
 }
 
-export { signUp, signIn, getHabits, createHabit, deleteHabit };
+function getHabitToday(token) {
+    return axios.get(`${API_URL}/habits/today`, headersConfig(token));
+}
+
+export { signUp, signIn, getHabits, createHabit, deleteHabit, getHabitToday };

@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import colors from '../styles/colors';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import ProgressContext from '../contexts/ProgressContext';
 
 export default function Menu() {
+    const { progress } = useContext(ProgressContext);
     return (
         <Container>
             <Link to="/habitos">
@@ -12,9 +15,9 @@ export default function Menu() {
             <Today>
                 <Link to="/hoje">
                     <CircularProgressbar
-                        value={100}
+                        value={progress}
                         styles={buildStyles({
-                            trailColor: 'white',
+                            pathColor: 'white',
                         })}
                     />
                     <span>Hoje</span>
