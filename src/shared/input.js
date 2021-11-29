@@ -10,6 +10,7 @@ const Input = styled.input`
     line-height: 24.97px;
     font-family: 'Lexend Deca', sans-serif;
     outline: none;
+    background-color: ${({ disabled }) => (disabled ? '#f2f2f2' : 'white')};
 
     &::placeholder {
         color: #dbdbdb;
